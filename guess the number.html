@@ -1,0 +1,125 @@
+<html>
+<head>
+	<title>
+		Guess The number
+	</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+		*{
+			margin:0;
+			padding:0;
+		}
+		.hero1{
+			background-color:purple;
+			background-size:cover;
+			height:698px;
+			width:98%;
+			padding:1%;
+			display:block;
+		}
+		.hero1 .title{
+			color:white;
+			font-size:40px;
+			font-family: "Lilita One", sans-serif;
+			margin: 5% 0 0 35%;
+		}
+		.label{
+			color:red;
+			font-size:25px;
+			font-family: "Lilita One", sans-serif;
+			margin: 10% 0 0 35%;
+		}
+		.input{
+			height:35px;
+			width:390px;
+			margin: 1% 0 0 35%;
+		}
+		.button{
+			height:30px;
+			width:390px;
+			background-color:#85C1E9;
+			display:grid;
+			padding:5px;
+			margin: 1% 0 0 35%;
+			font-family: "Lilita One", sans-serif;
+		}
+		.button2{
+			height:30px;
+			width:80px;
+			background-color:#85C1E9;
+			display:none;
+			margin: 1% 0 0 35%;
+		}
+		.output{
+			height:15px;
+			width:360px;
+			background-color:white;
+			margin: 1% 0 0 35%;
+			padding:1%;
+			display:grid;
+			justify-content:center;
+			font-family: "Lilita One", sans-serif;
+			color:blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="hero1">
+		<div class="title">
+			GUESS THE NUMBER...
+		</div>
+			<label for="input" class="label">
+				 enter a number:
+			</label>
+			<br>
+			<input type="number" id="input" class="input">
+			
+			<button type="button" class="button"id="go" onclick="user()">
+				Go!
+			</button>
+			<div class="output" id="output">
+				Output will be generated here.
+			</div>
+			<button type="button" class="button2" id="retry" onclick="resetMoves()">
+				Play again.
+			</button>
+		<script>
+			var number = 40; // Number to be guessed
+			var moves = 3; // Number of moves allowed
+
+			function user() {
+				var Inputuser1 = parseFloat(document.getElementById('input').value); // Store user input
+				moves--; // Decrement moves 
+
+				if (number == Inputuser1) {
+					document.getElementById('output').innerHTML = "Congrats!! You are right";
+					disable(); //  after correct guess
+				} else if (number > Inputuser1) {
+					document.getElementById('output').innerHTML = "Wrong!! The number is greater";
+				} else if (number < Inputuser1) {
+					document.getElementById('output').innerHTML = "Wrong!! The number is smaller";
+				} else {
+					document.getElementById('output').innerHTML = "Something went wrong";
+				}
+
+				if (moves == 0) {
+					document.getElementById('output').innerHTML='Out of moves';
+					disable(); //  after running out of moves
+				}
+			}
+
+			function disable() {
+				document.getElementById('go').style.display = "none";
+				document.getElementById('retry').style.display = "block";
+			}
+			function resetMoves() {
+				moves = 3; // Reset moves to 3
+				document.getElementById('go').style.display = "block";
+				document.getElementById('retry').style.display = "none";
+				document.getElementById('output').innerHTML = "Output will be generated here."; // Reset output message
+			}
+		</script>
+
+	</div>
+</body>
+</html>
